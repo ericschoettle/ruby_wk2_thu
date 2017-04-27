@@ -1,0 +1,18 @@
+<h2><%=@contact.first_name() %> <%=@contact.last_name() %></h2>
+
+<% if @contact.emails().length() > 0 %>
+  <h3>Emails:</h3>
+  <% @contact.emails.each() do |email| %>
+    <p> <%= email.email_address() %></p>
+  <%end%>
+<%end%>
+
+<h3>Add your email</h3>
+
+<form action="/contacts/<%=@contact.id%>" method="post">
+  <label for="email_address">Email</label>
+  <input type="text" name="email_address">
+  <label for="email_type">Email Type</label>
+  <input type="text" name="email_type">
+  <button type="submit" name="email">Add email</button>
+</form>

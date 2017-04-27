@@ -1,5 +1,21 @@
-<h2>Enter Your Contact Info</h2>
+<h2>Existing Contacts</h2>
+
+<% @contacts.each() do |contact| %>
+  <li><a href = "/contacts/<%=contact.id()%>"><%= contact.first_name() + " " + contact.last_name() %></a></li>
+<% end %>
+
+<h2>Add a new Contact</h2>
 
 <form action="/index" method="post">
-  
+  <label for="first_name">First Name</label>
+  <input type="text" name="first_name">
+  <label for="last_name">Last Name</label>
+  <input type="text" name="last_name">
+  <label for="job">Job</label>
+  <input type="text" name="job">
+  <label for="company">Company</label>
+  <input type="text" name="company">
+  <button type="submit">Add contact</button>
 </form>
+<br>
+ 

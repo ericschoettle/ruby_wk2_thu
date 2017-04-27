@@ -1,13 +1,19 @@
 class Contacts
-attr_reader(:first_name, :last_name, :job, :company)
+attr_reader(:id)
+attr_accessor(:first_name, :last_name, :job, :company, :emails)
   @@contacts = []
 
   define_method(:initialize) do |attributes|
-    @first_name = attributes.fetch(:first_name)
-    @last_name =attributes.fetch(:last_name)
-    @job = attributes.fetch(:job)
-    @company = attributes.fetch(:company)
+    @first_name = attributes.fetch("first_name")
+    @last_name =attributes.fetch("last_name")
+    @job = attributes.fetch("job")
+    @company = attributes.fetch("company")
     @id = @@contacts.length.+(1)
+    @emails = []
+  end
+
+  define_method(:add_email_address) do |email_address|
+    @emails.push(email_address)
   end
 
   define_singleton_method(:clear) do
@@ -20,10 +26,6 @@ attr_reader(:first_name, :last_name, :job, :company)
 
   define_method(:save) do
     @@contacts.push(self)
-  end
-
-  define_method(:id) do
-    @id
   end
 
   define_singleton_method(:find) do |id|
